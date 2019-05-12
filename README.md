@@ -1,6 +1,13 @@
-# client
+# Address book application with RESTful API (Flask + Docker practice)
 
-## Project setup
+## Server (Docker, Flask, postgreSQL): Run from `/server` directory
+
+
+
+
+## Client (Vue.js): Run from `/client` directory
+
+### Project setup
 ```
 npm install
 ```
@@ -29,3 +36,4 @@ npm run test:unit
 ```
 npm run test:e2e
 ```
+
