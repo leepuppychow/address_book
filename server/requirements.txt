@@ -1,6 +1,9 @@
 Flask
 Flask-Cors
-
 flask_migrate
 flask_sqlalchemy
 psycopg2-binary
+flask-script
+marshmallow
+flask-bcrypt
+pyjwt

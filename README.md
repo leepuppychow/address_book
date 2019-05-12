@@ -1,4 +1,4 @@
-# Address book application with RESTful API (Flask + Docker practice)
+# Address book application
 
 ## Server (Docker, Flask, postgreSQL): Run from `/server` directory
 
