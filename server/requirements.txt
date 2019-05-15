@@ -4,6 +4,6 @@ flask_migrate
 flask_sqlalchemy
 psycopg2-binary
 flask-script
-marshmallow
+flask_marshmallow
 flask-bcrypt
 pyjwt
