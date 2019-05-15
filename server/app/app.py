@@ -13,6 +13,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://%s:%s@%s/%s' % (
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+from models import *
+
 @app.route("/ping")
 def health_check():
   return jsonify(
