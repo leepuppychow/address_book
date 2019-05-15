@@ -1,11 +1,13 @@
-FROM python:3.7-slim
+FROM python:3.6-slim
 
-RUN mkdir /app
+COPY requirements.txt /
+
+WORKDIR /
+
+RUN pip install -r ./requirements.txt --no-cache-dir
+
+COPY . /app/
 
 WORKDIR /app
 
-COPY . /app
-
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
-
-EXPOSE 8080
+CMD flask db upgrade && flask run -h 0.0.0.0 -p 5000
