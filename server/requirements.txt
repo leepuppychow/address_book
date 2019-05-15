@@ -7,3 +7,4 @@ flask-script
 flask_marshmallow
 flask-bcrypt
 pyjwt
+requests

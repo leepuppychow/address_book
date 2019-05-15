@@ -15,7 +15,7 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 migrate = Migrate(app, db)
 
-from models import User, Address, addresses_schema, address_schema
+from models import Address, addresses_schema, address_schema
 
 @app.route("/api/v1/ping", methods=["GET"])
 def health_check():
@@ -72,3 +72,18 @@ def delete_address(id):
     return jsonify(message="Successfully deleted address"), 204
   else:
     return jsonify(message="Error deleting address"), 400
+
+from services.usps import UspsService
+
+@app.route("/api/v1/zipcode-lookup", methods=["POST"])
+def lookup_zipcode():
+  street = request.json['street']
+  city = request.json['city']
+  state = request.json['state']
+
+  zip5, zip4 = UspsService(street, city, state).get_zipcode()
+
+  if zip5 == "" or zip4 == "":
+    return jsonify(message="Unable to find address"), 404
+  else: 
+    return jsonify(zip5=zip5, zip4=zip4), 200
