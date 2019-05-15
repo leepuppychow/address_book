@@ -1,4 +1,4 @@
-from app import db
+from app import db, ma
 from sqlalchemy.orm import relationship
 
 class User(db.Model):
@@ -11,6 +11,17 @@ class User(db.Model):
   def __init__(self, email=None, password=None):
     self.email = email
     self.password= password
+
+  @staticmethod
+  def all():
+    return User.query.all() 
+
+class UserSchema(ma.Schema):
+  class Meta:
+    fields = ('id', 'email')
+
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)
 
 class Address(db.Model):
   __tablename__ = "addresses"
@@ -27,7 +38,14 @@ class Address(db.Model):
     self.city = city
     self.state = state
     self.zip = zip
+  
+  @staticmethod
+  def all():
+    return Address.query.all() 
 
+class AddressSchema(ma.Schema):
+  class Meta:
+    fields = ('id', 'street', 'city', 'state', 'zip')
 
-
-
+address_schema = AddressSchema()
+addresses_schema = AddressSchema(many=True)
