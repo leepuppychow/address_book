@@ -1,9 +1,5 @@
 # Address book application
 
-* This was my first time making a RESTful API in Flask. Found this resource to be quite helpful:
-
-[LINK](https://www.codementor.io/olawalealadeusi896/restful-api-with-python-flask-framework-and-postgres-db-part-1-kbrwbygx5)
-
 
 ## Server (Docker, Flask, postgreSQL): Run from `/server` directory
 
