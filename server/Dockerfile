@@ -10,4 +10,4 @@ COPY . /app/
 
 WORKDIR /app
 
-CMD flask db migrate && flask db upgrade && python manage.py seed && flask run -h 0.0.0.0 -p 5000
+CMD flask db upgrade && python manage.py seed && flask run -h 0.0.0.0 -p 5000

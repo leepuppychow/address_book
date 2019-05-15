@@ -1,6 +1,6 @@
 # Address book application
 
-## Server (Docker, Flask, postgreSQL): Run from `/server` directory
+## Server (Docker, Flask, postgreSQL)
 
 1. [Need to have Docker installed](https://docs.docker.com/install/)
 2. Create new `.env` file within `/server` directory and copy contents of `example.env` into there
@@ -14,7 +14,7 @@
 6. From `/server` run `docker-compose up`
 7. Check status of server with GET to `http://localhost:5000/api/v1/ping` --> status 200
 
-## Client (Vue.js): Run from `/client` directory
+## Client (Vue.js)
 
 ### Project setup
 ```
