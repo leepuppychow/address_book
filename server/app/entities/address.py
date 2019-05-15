@@ -1,6 +1,7 @@
 import logging
 from sqlalchemy.orm import relationship
 from app import db, ma
+from entities.user import User
 
 class Address(db.Model):
   __tablename__ = "addresses"
