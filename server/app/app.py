@@ -23,12 +23,6 @@ def health_check():
     status="OK"
   ), 200
 
-@app.route("/api/v1/users", methods=["GET"])
-def all_users():
-  all_users = User.all()
-  result = users_schema.dump(all_users)
-  return jsonify(result.data), 200
-
 @app.route("/api/v1/addresses", methods=["GET"])
 def all_addresses():
   all_addresses = Address.all()
