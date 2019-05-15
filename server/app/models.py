@@ -42,10 +42,14 @@ class Address(db.Model):
   @staticmethod
   def all():
     return Address.query.all() 
+      
+  @staticmethod
+  def find(id):
+    return Address.query.get(id)
 
 class AddressSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'street', 'city', 'state', 'zip')
+    fields = ('id', 'user_id', 'street', 'city', 'state', 'zip')
 
 address_schema = AddressSchema()
 addresses_schema = AddressSchema(many=True)

@@ -15,16 +15,23 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 migrate = Migrate(app, db)
 
-from models import User, Address, users_schema, addresses_schema
+from models import User, Address, addresses_schema, address_schema
 
 @app.route("/api/v1/ping", methods=["GET"])
 def health_check():
-  return jsonify(
-    status="OK"
-  ), 200
+  return jsonify(message="OK"), 200
 
 @app.route("/api/v1/addresses", methods=["GET"])
 def all_addresses():
   all_addresses = Address.all()
   result = addresses_schema.dump(all_addresses)
   return jsonify(result.data), 200
+
+@app.route("/api/v1/addresses/<id>", methods=["GET"])
+def find_address(id):
+  address = Address.find(id)
+  if address is None:
+    return jsonify(message="Address not found"), 404
+  else:
+    return address_schema.jsonify(address)
+
