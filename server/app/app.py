@@ -11,7 +11,6 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://%s:%s@%s/%s' % (
 )
 
 db = SQLAlchemy(app)
-db.create_all()
 migrate = Migrate(app, db)
 
 from models import *
