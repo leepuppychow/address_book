@@ -4,6 +4,8 @@
 
 1. Need to have Docker installed
 2. Create new `.env` file within `/server` directory and copy contents of `example.env` into there
+    * Note: by leaving FLASK_DEBUG=1 the server will hot reload (because of the docker-compose volumes option for the serve)
+    * Turn off by setting FLASK_DEBUG=0
 3. If you have PostgreSQL running locally make sure to stop that to free up port:
     * Ex: `brew services stop postgres`
     * Ex: `pg_ctl -D /usr/local/var/postgres stop`
