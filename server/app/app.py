@@ -15,9 +15,9 @@ migrate = Migrate(app, db)
 
 from models import *
 
-@app.route("/ping")
+@app.route("/api/v1/ping")
 def health_check():
   return jsonify(
-    status="OK THEN"
+    status="OK"
   ), 200
 

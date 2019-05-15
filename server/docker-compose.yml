@@ -4,11 +4,10 @@ services:
   postgres:
     restart: always
     image: postgres
-    environment:
-      POSTGRES_PASSWORD: password
     ports:
       - "5433:5433"
   server:
+    restart: always
     build: .
     env_file:
       - .env
