@@ -2,6 +2,8 @@
 
 ## Server (Docker, Flask, postgreSQL)
 
+### Setup
+
 1. [Need to have Docker installed](https://docs.docker.com/install/)
 2. Create new `.env` file within `/server` directory and copy contents of `example.env` into there
     * Note: by leaving FLASK_DEBUG=1 the server will hot reload (because of the volumes setup in the docker-compose server service)
@@ -13,6 +15,22 @@
 5. From `/server` run `docker-compose build`
 6. From `/server` run `docker-compose up`
 7. Check status of server with GET to `http://localhost:5000/api/v1/ping` --> status 200
+
+### Notes
+
+* All routes except `/ping`, `/login`, and `/register` and protected with JWT
+* Pass in token with header (ex: `"Authorization": "Bearer yourtokenblahblahblah..."`)
+
+Routes:
+
+* GET /api/v1/ping
+* POST /api/v1/login
+* POST /api/v1/register
+* GET /api/v1/addresses
+* GET /api/v1/addresses/:id
+* POST /api/v1/addresses
+* PUT /api/v1/addresses/:id
+* DELETE /api/v1/addresses/:id
 
 ## Client (Vue.js)
 
