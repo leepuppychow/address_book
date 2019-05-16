@@ -13,6 +13,16 @@ class User(db.Model):
   def __init__(self, email=None, password=None):
     self.email = email
     self.password= password
+
+  @staticmethod
+  def login(email, password):
+    user = User.find(email)
+    if user is None:
+      return False, None
+    if bcrypt.check_password_hash(user.password, password):
+      return True, user
+    else:
+      return False, None
   
   @staticmethod
   def find(email):
@@ -26,7 +36,7 @@ class User(db.Model):
     else: 
       user = User(
         email=email,
-        password=bcrypt.generate_password_hash(password)
+        password=bcrypt.generate_password_hash(password).decode('utf-8')
       )
       db.session.add(user)
       db.session.commit()

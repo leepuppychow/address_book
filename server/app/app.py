@@ -24,9 +24,10 @@ from models import Address, addresses_schema, address_schema, User
 @app.route("/api/v1/login", methods=["POST"])
 def login():
   email = request.json['email']
-  user = User.find(email)
-  if user is None:
-    return jsonify("User not found"), 404
+  password = request.json['password']
+  valid, user = User.login(email, password)
+  if valid == False:
+    return jsonify("Unauthorized"), 401
   try: 
     auth_token = encode_auth_token(user.id)
     if auth_token:
