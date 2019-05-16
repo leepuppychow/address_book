@@ -4,6 +4,7 @@ from flask import Flask, request, jsonify
 from flask_migrate import Migrate 
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -14,6 +15,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql+psycopg2://%s:%s@%s/%s' % (
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 migrate = Migrate(app, db)
+bcrypt = Bcrypt(app)
 
 from models import Address, addresses_schema, address_schema, User
 
@@ -33,11 +35,24 @@ def login():
   except Exception as err:
     logging.error(err)
     return jsonify("Error with login"), 500
-  
 
-
-# @app.route("/api/v1/register", methods=["POST"])
-
+@app.route("/api/v1/register", methods=["POST"])
+def register():
+  email = request.json['email']
+  password = request.json['password']
+  user = User.create(email, password)
+  if user is None:
+    return jsonify("User already exists with those credentials"), 400
+  try: 
+    auth_token = user.encode_auth_token(user.id)
+    if auth_token:
+      return jsonify(
+        message="Successful registration",
+        token=auth_token.decode()
+      ), 200
+  except Exception as err:
+    logging.error(err)
+    return jsonify("Error with registration"), 500
 
 # @app.route("/api/v1/logout", methods=["POST"])
 
