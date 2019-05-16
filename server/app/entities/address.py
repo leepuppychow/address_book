@@ -1,3 +1,4 @@
+from flask import g
 import logging
 from sqlalchemy.orm import relationship
 from app import db, ma
@@ -39,9 +40,7 @@ class Address(db.Model):
   
   @staticmethod
   def create(first_name, last_name, phone, email, street, city, state, zip, favorite):
-    # TODO: have function to get current_user, add ID here:
-    temp_user = User.query.limit(1).all()[0]
-    new_address = Address(temp_user.id, first_name, last_name, phone, email, street, city, state, zip, favorite) 
+    new_address = Address(g.user_id, first_name, last_name, phone, email, street, city, state, zip, favorite) 
     try:
       db.session.add(new_address)
       db.session.commit()
