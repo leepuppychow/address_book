@@ -5,7 +5,9 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
+
 from middleware.auth import encode_auth_token, auth
+from services.usps import UspsService
 
 app = Flask(__name__)
 
@@ -117,8 +119,6 @@ def delete_address(id):
     return jsonify(message="Successfully deleted address"), 204
   else:
     return jsonify(message="Error deleting address"), 400
-
-from services.usps import UspsService
 
 @app.route("/api/v1/zipcode-lookup", methods=["POST"])
 @auth.login_required
