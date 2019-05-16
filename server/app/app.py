@@ -1,4 +1,4 @@
-import os 
+import os, logging
 
 from flask import Flask, request, jsonify
 from flask_migrate import Migrate 
@@ -15,7 +15,32 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 migrate = Migrate(app, db)
 
-from models import Address, addresses_schema, address_schema
+from models import Address, addresses_schema, address_schema, User
+
+@app.route("/api/v1/login", methods=["POST"])
+def login():
+  email = request.json['email']
+  user = User.find(email)
+  if user is None:
+    return jsonify("User not found"), 404
+  try: 
+    auth_token = user.encode_auth_token(user.id)
+    if auth_token:
+      return jsonify(
+        message="Successful login",
+        token=auth_token.decode()
+      ), 200
+  except Exception as err:
+    logging.error(err)
+    return jsonify("Error with login"), 500
+  
+
+
+# @app.route("/api/v1/register", methods=["POST"])
+
+
+# @app.route("/api/v1/logout", methods=["POST"])
+
 
 @app.route("/api/v1/ping", methods=["GET"])
 def health_check():
