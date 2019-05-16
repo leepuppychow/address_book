@@ -1,3 +1,4 @@
+from flask import g
 import logging, os, datetime
 import jwt
 from flask_httpauth import HTTPTokenAuth
@@ -6,7 +7,8 @@ auth = HTTPTokenAuth("Bearer")
 
 @auth.verify_token
 def verify_token(token):
-  valid, _ = decode_auth_token(token)
+  valid, user_id = decode_auth_token(token)
+  g.user_id = user_id
   return valid
 
 def decode_auth_token(token):
@@ -21,7 +23,7 @@ def decode_auth_token(token):
 def encode_auth_token(user_id):
   try:
     payload = {
-      'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1),
+      'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=3),
       'iat': datetime.datetime.utcnow(),
       'sub': user_id
     }
