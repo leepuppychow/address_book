@@ -10,12 +10,13 @@
     * Turn off by setting FLASK_DEBUG=0
 3. In `.env`, set USPS_USER_ID equal to your USPS username. 
 4. In `.env`, set JWT_SECRET to whatever you would like.
-4. If you have PostgreSQL running locally make sure to stop that to free up port:
+5. If you have PostgreSQL running locally make sure to stop that to free up port:
     * Ex: `brew services stop postgres`
     * Ex: `pg_ctl -D /usr/local/var/postgres stop`
-5. Be in directory `/server`, and then run `docker-compose build`
-6. Be in directory `/server`, and then run `docker-compose up`
-7. Check status of server with GET to `http://localhost:5000/api/v1/ping` --> status 200
+6. If you happen to have existing Docker containers named `server_server_1` and/or `server_postgres_1` remove those first.
+7. Be in directory `/server`, and then run `docker-compose build`
+8. Be in directory `/server`, and then run `docker-compose up`
+9. Check status of server with GET to `http://localhost:5000/api/v1/ping` --> status 200
 
 ### Notes
 
