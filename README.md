@@ -31,7 +31,7 @@
         }
     ```
 
-Routes:
+### Routes
 
 * GET /api/v1/ping
 * POST /api/v1/login
