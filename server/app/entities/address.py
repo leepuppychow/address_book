@@ -6,18 +6,28 @@ from entities.user import User
 class Address(db.Model):
   __tablename__ = "addresses"
   id = db.Column(db.Integer, primary_key=True)
+  first_name = db.Column(db.String(120))
+  last_name = db.Column(db.String(120))
+  phone = db.Column(db.String(80))
+  email = db.Column(db.String(200))
+  favorite = db.Column(db.Boolean)
   street = db.Column(db.String(120))
   city = db.Column(db.String(80))
   state = db.Column(db.String(80))
   zip = db.Column(db.String(80))
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
-  def __init__(self, user_id, street, city, state, zip):
+  def __init__(self, user_id, first_name, last_name, phone, email, street, city, state, zip, favorite):
     self.user_id = user_id
+    self.first_name = first_name
+    self.last_name = last_name
+    self.phone = phone
+    self.email = email
     self.street = street
     self.city = city
     self.state = state
     self.zip = zip
+    self.favorite = favorite
   
   @staticmethod
   def all():
@@ -28,10 +38,10 @@ class Address(db.Model):
     return Address.query.get(id)
   
   @staticmethod
-  def create(street, city, state, zip):
+  def create(first_name, last_name, phone, email, street, city, state, zip, favorite):
     # TODO: have function to get current_user, add ID here:
     temp_user = User.query.limit(1).all()[0]
-    new_address = Address(temp_user.id, street, city, state, zip) 
+    new_address = Address(temp_user.id, first_name, last_name, phone, email, street, city, state, zip, favorite) 
     try:
       db.session.add(new_address)
       db.session.commit()
@@ -49,12 +59,17 @@ class Address(db.Model):
       logging.error(err)
       return False
   
-  def update(self, street, city, state, zip):
+  def update(self, first_name, last_name, phone, email, street, city, state, zip, favorite):
     try:
+      self.first_name = first_name
+      self.last_name = last_name
+      self.phone = phone
+      self.email = email
       self.street = street
       self.city = city
       self.state = state
       self.zip = zip
+      self.favorite = favorite
       db.session.commit()
       return self
     except Exception as err:
@@ -63,7 +78,7 @@ class Address(db.Model):
 
 class AddressSchema(ma.Schema):
   class Meta:
-    fields = ('id', 'user_id', 'street', 'city', 'state', 'zip')
+    fields = ('id', 'user_id', 'first_name', 'last_name', 'phone', 'email', 'street', 'city', 'state', 'zip', 'favorite')
 
 address_schema = AddressSchema()
 addresses_schema = AddressSchema(many=True)
