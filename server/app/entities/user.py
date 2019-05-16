@@ -1,12 +1,13 @@
-import logging
+import logging, os, datetime
+import jwt
 from sqlalchemy.orm import relationship
-from app import db, ma
+from app import db, ma, bcrypt
 
 class User(db.Model):
   __tablename__ = "users"
   id = db.Column(db.Integer, primary_key=True)
   email = db.Column(db.String(80))
-  password = db.Column(db.String(80))
+  password = db.Column(db.String(500))
   address = relationship("Address", cascade="all, delete, delete-orphan")
 
   def __init__(self, email=None, password=None):
@@ -14,8 +15,32 @@ class User(db.Model):
     self.password= password
 
   @staticmethod
-  def all():
-    return User.query.all() 
+  def login(email, password):
+    user = User.find(email)
+    if user is None:
+      return False, None
+    if bcrypt.check_password_hash(user.password, password):
+      return True, user
+    else:
+      return False, None
+  
+  @staticmethod
+  def find(email):
+    return User.query.filter_by(email=email).first()
+  
+  @staticmethod
+  def create(email, password):
+    already_exists = User.find(email)
+    if already_exists:
+      return None
+    else: 
+      user = User(
+        email=email,
+        password=bcrypt.generate_password_hash(password).decode('utf-8')
+      )
+      db.session.add(user)
+      db.session.commit()
+      return user
 
 class UserSchema(ma.Schema):
   class Meta:

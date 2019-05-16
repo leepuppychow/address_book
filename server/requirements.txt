@@ -4,7 +4,9 @@ flask_migrate
 flask_sqlalchemy
 psycopg2-binary
 flask-script
+marshmallow-sqlalchemy
 flask_marshmallow
 flask-bcrypt
 pyjwt
 requests
+flask-httpauth
