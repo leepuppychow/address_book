@@ -37,7 +37,7 @@ class Address(db.Model):
       db.session.commit()
       return new_address
     except Exception as err:
-      logging.error("Error adding address to DB", err)
+      logging.error(err)
       return None
   
   def delete(self):
@@ -46,7 +46,7 @@ class Address(db.Model):
       db.session.commit()
       return True
     except Exception as err:
-      logging.error("Error deleting address from DB", err)
+      logging.error(err)
       return False
   
   def update(self, street, city, state, zip):
@@ -58,7 +58,7 @@ class Address(db.Model):
       db.session.commit()
       return self
     except Exception as err:
-      logging.error("Error deleting address from DB", err)
+      logging.error(err)
       return False
 
 class AddressSchema(ma.Schema):

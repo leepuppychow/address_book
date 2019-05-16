@@ -16,7 +16,7 @@ def truncate_tables():
     db.session.query(User).delete()
     db.session.commit()
   except Exception as err:
-    logging.error("Error deleting DB data", err)
+    logging.error(err)
     db.session.rollback()
 
 def insert_users_and_addresses():
@@ -37,7 +37,7 @@ def insert_users_and_addresses():
     db.session.commit()
     print('\n\nDATABASE SEEDING COMPLETE\n\n')
   except Exception as err:
-    logging.error("Error deleting DB data", err)
+    logging.error(err)
     db.session.rollback()
 
 if __name__ == "__main__":
