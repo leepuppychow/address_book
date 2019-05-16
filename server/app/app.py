@@ -73,12 +73,17 @@ def all_addresses():
 @app.route("/api/v1/addresses", methods=["POST"])
 @auth.login_required
 def create_address():
+  first_name = request.json['first_name']
+  last_name = request.json['last_name']
+  phone = request.json['phone']
+  email = request.json['email']
   street = request.json['street']
   city = request.json['city']
   state = request.json['state']
   zip = request.json['zip']
+  favorite = request.json['favorite']
 
-  new_address = Address.create(street, city, state, zip)
+  new_address = Address.create(first_name, last_name, phone, email, street, city, state, zip, favorite)
   if new_address is not None:
     return address_schema.jsonify(new_address), 201
   else:
@@ -96,16 +101,21 @@ def find_address(id):
 @app.route("/api/v1/addresses/<id>", methods=["PUT"])
 @auth.login_required
 def update_address(id):
+  first_name = request.json['first_name']
+  last_name = request.json['last_name']
+  phone = request.json['phone']
+  email = request.json['email']
   street = request.json['street']
   city = request.json['city']
   state = request.json['state']
   zip = request.json['zip']
+  favorite = request.json['favorite']
 
   address = Address.find(id)
   if address is None:
     return jsonify(message="Error updating address, not found"), 404
   
-  updated_address = address.update(street, city, state, zip)
+  updated_address = address.update(first_name, last_name, phone, email, street, city, state, zip, favorite)
   return address_schema.jsonify(updated_address), 200
 
 @app.route("/api/v1/addresses/<id>", methods=["DELETE"])

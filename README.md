@@ -9,17 +9,26 @@
     * Note: by leaving FLASK_DEBUG=1 the server will hot reload (because of the volumes setup in the docker-compose server service)
     * Turn off by setting FLASK_DEBUG=0
 3. In `.env`, set USPS_USER_ID equal to your USPS username. 
+4. In `.env`, set JWT_SECRET to whatever you would like.
 4. If you have PostgreSQL running locally make sure to stop that to free up port:
     * Ex: `brew services stop postgres`
     * Ex: `pg_ctl -D /usr/local/var/postgres stop`
-5. From `/server` run `docker-compose build`
-6. From `/server` run `docker-compose up`
+5. Be in directory `/server`, and then run `docker-compose build`
+6. Be in directory `/server`, and then run `docker-compose up`
 7. Check status of server with GET to `http://localhost:5000/api/v1/ping` --> status 200
 
 ### Notes
 
 * All routes except `/ping`, `/login`, and `/register` and protected with JWT
 * Pass in token with header (ex: `"Authorization": "Bearer yourtokenblahblahblah..."`)
+* To get a token, POST to `/api/v1/login` with body:
+
+    ```
+        {
+            "email": "test@test.com",
+            "password": "password"
+        }
+    ```
 
 Routes:
 
@@ -31,6 +40,7 @@ Routes:
 * POST /api/v1/addresses
 * PUT /api/v1/addresses/:id
 * DELETE /api/v1/addresses/:id
+* POST /api/v1/zipcode-lookup
 
 ## Client (Vue.js)
 
