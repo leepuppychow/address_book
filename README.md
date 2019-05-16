@@ -2,7 +2,7 @@
 
 ## Server (Docker, Flask, postgreSQL)
 
-### Setup
+### Setup (instructions are for MacOS)
 
 1. [Need to have Docker installed](https://docs.docker.com/install/)
 2. Create new `.env` file within `/server` directory and copy contents of `example.env` into there
@@ -20,7 +20,7 @@
 
 ### Notes
 
-* All routes except `/ping`, `/login`, and `/register` and protected with JWT
+* All routes except `/ping`, `/login`, and `/register` are protected with JWT
 * Pass in token with header (ex: `"Authorization": "Bearer yourtokenblahblahblah..."`)
 * To get a token, POST to `/api/v1/login` with body:
 
@@ -70,7 +70,7 @@ npm run lint
 npm run test:unit
 ```
 
-### Run your end-to-end tests
+### Run your end-to-end tests (this uses [Cypress](https://www.cypress.io/))
 ```
 npm run test:e2e
 ```
