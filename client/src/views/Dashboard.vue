@@ -1,5 +1,5 @@
 <template>
-  <div class="Dashboard">
-    <h1>Dashboard</h1>
+  <div class="dashboard">
+    <h1>Welcome to your Address Book</h1>
   </div>
 </template>
