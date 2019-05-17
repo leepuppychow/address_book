@@ -32,11 +32,11 @@ class Address(db.Model):
   
   @staticmethod
   def all():
-    return Address.query.all() 
+    return Address.query.filter_by(user_id=g.user_id).all()
       
   @staticmethod
   def find(id):
-    return Address.query.get(id)
+    return Address.query.filter_by(id=id, user_id=g.user_id).first()
   
   @staticmethod
   def create(first_name, last_name, phone, email, street, city, state, zip, favorite):
