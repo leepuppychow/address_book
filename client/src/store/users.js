@@ -1,4 +1,4 @@
-import { login, register } from '../api/api';
+import { login, register, validateToken } from '../api/api';
 
 const users = {
   namespaced: true,
@@ -50,7 +50,17 @@ const users = {
         commit('setLoadingStatus', false);
         commit('setSuccessStatus', true);
       } catch (_err) {
-        commit('setError', 'Error with register, please try again');
+        commit('setError', 'Email already taken, please try again');
+      }
+    },
+    async validateToken({ commit }, authToken) {
+      try {
+        commit('setLoadingStatus', true);
+        await validateToken(authToken);
+        commit('setLoadingStatus', false);
+        commit('setSuccessStatus', true);
+      } catch (_err) {
+        commit('setError', ''); // Dont display any feedback to bad actor
       }
     },
     logout({ commit }) {

@@ -7,3 +7,9 @@ const headers = {
 
 export const login = body => Vue.http.post(`${baseUrl}/login`, body, headers);
 export const register = body => Vue.http.post(`${baseUrl}/register`, body, headers);
+export const validateToken = token => Vue.http.get(`${baseUrl}/validate_token`, {
+  headers: {
+    ...headers,
+    Authorization: `Bearer ${token}`,
+  },
+});
