@@ -3,9 +3,9 @@ import { login, register } from '../api/api';
 const users = {
   namespaced: true,
   state: {
-    currentUser: null,
     loading: false,
-    error: null,
+    success: false,
+    error: '',
   },
   getters: {
 
@@ -14,8 +14,16 @@ const users = {
     setLoadingStatus(state, status) {
       state.loading = status;
     },
+    setSuccessStatus(state, status) {
+      state.success = status;
+    },
     setError(state, err) {
       state.error = err;
+    },
+    resetState(state) {
+      state.loading = false;
+      state.success = false;
+      state.error = '';
     },
   },
   actions: {
@@ -27,8 +35,9 @@ const users = {
         const { token } = data;
         sessionStorage.setItem('addressToken', token);
         commit('setLoadingStatus', false);
-      } catch (err) {
-        commit('setError', err);
+        commit('setSuccessStatus', true);
+      } catch (_err) {
+        commit('setError', 'Error with login, please try again');
       }
     },
     async register({ commit }, body) {
@@ -39,12 +48,17 @@ const users = {
         const { token } = data;
         sessionStorage.setItem('addressToken', token);
         commit('setLoadingStatus', false);
-      } catch (err) {
-        commit('setError', err);
+        commit('setSuccessStatus', true);
+      } catch (_err) {
+        commit('setError', 'Error with register, please try again');
       }
     },
-    logout() {
+    logout({ commit }) {
       sessionStorage.removeItem('addressToken');
+      commit('resetState');
+    },
+    resetState({ commit }) {
+      commit('resetState');
     },
   },
 };
