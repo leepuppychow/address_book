@@ -1,11 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav"></div>
+    <Header />
     <router-view/>
   </div>
 </template>
 
+<script>
+import Header  from './components/Header';
+
+export default {
+  components: {
+    Header,
+  }
+}
+</script>
+
 <style lang="scss">
+body {
+  margin: 0;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -13,14 +26,5 @@
   text-align: center;
   color: #2c3e50;
   height: 100vh;
-}
-#nav {
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
