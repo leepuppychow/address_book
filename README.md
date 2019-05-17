@@ -57,6 +57,13 @@ npm install
 npm run serve
 ```
 
+* You can login with a test user:
+
+```
+    EMAIL = test@test.com
+    PASSWORD = password
+```
+
 ### Compiles and minifies for production
 ```
 npm run build
