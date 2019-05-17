@@ -63,9 +63,10 @@ const users = {
         commit('setError', ''); // Dont display any feedback to bad actor
       }
     },
-    logout({ commit }) {
+    logout({ commit, dispatch }) {
       sessionStorage.removeItem('addressToken');
       commit('resetState');
+      dispatch('addresses/resetState', null, { root: true });
     },
     resetState({ commit }) {
       commit('resetState');
