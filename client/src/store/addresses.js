@@ -17,6 +17,11 @@ const addresses = {
 
   },
   mutations: {
+    resetState(state) {
+      state.all = [];
+      state.loading = false;
+      state.error = '';
+    },
     setLoadingStatus(state, status) {
       state.loading = status;
     },
@@ -28,6 +33,9 @@ const addresses = {
     },
   },
   actions: {
+    resetState({ commit }) {
+      commit('resetState');
+    },
     async getAllAddresses({ commit }) {
       try {
         commit('setLoadingStatus', true);
@@ -35,7 +43,7 @@ const addresses = {
         const payload = await response.json();
         commit('setAddresses', payload);
         commit('setLoadingStatus', false);
-      } catch (_err) {
+      } catch (err) {
         commit('setError', 'Error getting all addresses');
       }
     },
