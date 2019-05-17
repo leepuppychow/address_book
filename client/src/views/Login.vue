@@ -1,5 +1,80 @@
 <template>
-  <div class="Login">
-    <h1>Login</h1>
+  <div class="login">
+    <h1>Please Login or Register</h1>
+    <input
+      type="text"
+      placeholder="Enter email"
+      v-model="email"
+    >
+    <input
+      type="password"
+      placeholder="Enter password"
+      v-model="password"
+    >
+    <button @click="login">Login</button>
+    <p>Or</p>
+    <button @click="register">Register</button>
+    <p id="error-message">{{ userError }}</p>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  computed: {
+    success() {
+      return this.$store.state.users.success;
+    },
+    userError() {
+      return this.$store.state.users.error;
+    },
+  },
+  methods: {
+    async login() {
+      await this.$store.dispatch('users/login', {
+        email: this.email,
+        password: this.password,
+      });
+      if (this.success) this.$router.push('dashboard');
+    },
+    async register() {
+      await this.$store.dispatch('users/register', {
+        email: this.email,
+        password: this.password,
+      });
+      if (this.success) this.$router.push('dashboard');
+    },
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input {
+  width: 400px;
+  font-size: 20px;
+  padding: 5px;
+  margin: 7px;
+}
+button {
+  width: 200px;
+  height: 32px;
+  border-radius: 16px;
+  font-size: 20px;
+  margin-top: 10px;
+  background: white;
+}
+#error-message {
+  color: red;
+}
+</style>
+

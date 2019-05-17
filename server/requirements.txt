@@ -10,3 +10,4 @@ flask-bcrypt
 pyjwt
 requests
 flask-httpauth
+flask-cors
