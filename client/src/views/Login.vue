@@ -58,23 +58,33 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-input {
-  width: 400px;
-  font-size: 20px;
-  padding: 5px;
-  margin: 7px;
-}
-button {
-  width: 200px;
-  height: 32px;
-  border-radius: 16px;
-  font-size: 20px;
-  margin-top: 10px;
-  background: white;
-}
-#error-message {
-  color: red;
+  justify-content: center;
+  background-image: url('../images/address-book-icon.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100vh;
+
+  h1, p {
+    color: white;
+  }
+  input {
+    width: 400px;
+    font-size: 20px;
+    padding: 5px;
+    margin: 7px;
+  }
+  button {
+    width: 200px;
+    height: 32px;
+    border-radius: 16px;
+    font-size: 20px;
+    margin-top: 10px;
+    background: white;
+  }
+  #error-message {
+    color: red;
+  }
 }
 </style>
 

@@ -61,6 +61,11 @@ def register():
     logging.error(err)
     return jsonify("Error with registration"), 500
 
+@app.route("/api/v1/validate_token", methods=["GET"])
+@auth.login_required
+def validate():
+  return jsonify(message="valid token"), 200
+
 @app.route("/api/v1/ping", methods=["GET"])
 def health_check():
   return jsonify(message="OK"), 200
