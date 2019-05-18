@@ -1,11 +1,19 @@
 <template>
-  <div>
-    <p v-for="a in addresses" :key="a.id">{{ a.street }}</p>
+  <div id="dashboard">
+    <ContactList />
+    <ContactCard />
   </div>
 </template>
 
 <script>
+import ContactList from "../components/ContactList";
+import ContactCard from "../components/ContactCard";
+
 export default {
+  components: {
+    ContactList,
+    ContactCard,
+  },
   computed: {
     validToken() {
       return this.$store.state.users.success;
@@ -28,7 +36,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+#dashboard {
+  display: flex;
+  flex-flow: row-wrap;
+  height: calc(100vh - 60px);
+  width: 100vw;
+}
 </style>
 
