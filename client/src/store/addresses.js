@@ -1,4 +1,4 @@
-import { 
+import {
   allContacts,
   deleteContact,
 } from '../api/api';
@@ -17,6 +17,7 @@ const addresses = {
   mutations: {
     resetState(state) {
       state.all = [];
+      state.selectContact = null;
       state.loading = false;
       state.error = '';
     },
@@ -55,8 +56,8 @@ const addresses = {
       try {
         commit('setLoadingStatus', true);
         await deleteContact(addressId);
-        debugger;
         dispatch('getAllContacts');
+        commit('setLoadingStatus', false);
       } catch (err) {
         commit('setError', 'Error deleting address');
       }
