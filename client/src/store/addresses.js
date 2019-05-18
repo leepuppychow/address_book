@@ -10,6 +10,7 @@ const addresses = {
   namespaced: true,
   state: {
     all: [],
+    selectedContact: null,
     loading: false,
     error: '',
   },
@@ -31,10 +32,16 @@ const addresses = {
     setAddresses(state, payload) {
       state.all = payload;
     },
+    selectContact(state, addressId) {
+      state.selectedContact = state.all.find(a => a.id === addressId);
+    },
   },
   actions: {
     resetState({ commit }) {
       commit('resetState');
+    },
+    selectContact({ commit }, addressId) {
+      commit('selectContact', addressId);
     },
     async getAllAddresses({ commit }) {
       try {
