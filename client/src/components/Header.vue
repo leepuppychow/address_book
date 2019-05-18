@@ -33,7 +33,7 @@ export default {
 #nav {
   padding: 0;
   margin: 0;
-  background: #2880B9;
+  background: $app-blue;
   height: 60px;
   width: 100vw;
   display: flex;
