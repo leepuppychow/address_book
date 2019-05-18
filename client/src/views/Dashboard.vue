@@ -31,7 +31,7 @@ export default {
     })
   },
   async created() {
-    await this.$store.dispatch('addresses/getAllAddresses');
+    await this.$store.dispatch('addresses/getAllContacts');
   }
 }
 </script>
