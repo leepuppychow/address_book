@@ -46,6 +46,9 @@
 
 ## Client (Vue.js)
 
+* Node.js version: 8.9.4
+* From the `/client` directory:
+
 ### Project setup
 
 ```
