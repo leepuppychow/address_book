@@ -41,8 +41,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/containers.scss";
-
 #all-contacts {
   height: 100%;
   width: 50%;

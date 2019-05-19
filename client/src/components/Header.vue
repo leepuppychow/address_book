@@ -31,15 +31,12 @@ export default {
 
 <style lang="scss" scoped>
 #nav {
+  @include flex(row, space-between, center);
   padding: 0;
   margin: 0;
   background: $app-blue;
   height: 60px;
   width: 100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   color: white;
 
   a {
@@ -52,9 +49,7 @@ export default {
   }
 
   #logo-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    @include flex(row, center, center);
   }
 
   .address-book-icon {

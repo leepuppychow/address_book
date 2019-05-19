@@ -55,10 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @include flex(column, center, center);
   background-image: url('../images/address-book-icon.png');
   background-repeat: no-repeat;
   background-size: contain;
