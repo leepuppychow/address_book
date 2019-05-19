@@ -1,6 +1,10 @@
 <template>
   <div id="all-contacts">
-    <h3>All Contacts</h3>
+    <ContactForm v-if="popupVisible"/>
+    <header>
+      <h3>All Contacts</h3>
+      <button @click="showPopup">Add New Contact</button>
+    </header>
     <div 
       class="contact-wrapper"
       :key="a.id"
@@ -23,13 +27,24 @@
 </template>
 
 <script>
+import ContactForm from './ContactForm';
+
 export default {
+  components: {
+    ContactForm,
+  },
   computed: {
+    popupVisible() {
+      return this.$store.state.modals.contactFormVisible;
+    },
     addresses() {
       return this.$store.state.addresses.all;
-    }
+    },
   },
   methods: {
+    showPopup() {
+      this.$store.dispatch('modals/showContactFormPopup');
+    },
     selectContact(addressId) {
       this.$store.dispatch('addresses/selectContact', addressId);
     },
@@ -41,12 +56,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/containers.scss";
-
 #all-contacts {
   height: 100%;
   width: 50%;
   border: solid 1px $app-blue;
+
+  header {
+    @include flex(row, space-between, center);
+    padding: 0 24px;
+
+    button {
+      cursor: pointer;
+    }
+  }
 }
 .contact-wrapper {
   @include flex(row, center, center);

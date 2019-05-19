@@ -38,8 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 #dashboard {
-  display: flex;
-  flex-flow: row-wrap;
+  @include flex(row, center, center);
   height: calc(100vh - 60px);
   width: 100vw;
 }
