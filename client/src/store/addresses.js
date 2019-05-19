@@ -3,6 +3,7 @@ import {
   deleteContact,
   createContact,
   editContact,
+  zipcodeLookup,
 } from '../api/api';
 
 const addresses = {
@@ -13,6 +14,7 @@ const addresses = {
     loading: false,
     error: '',
     successMessage: '',
+    zipcodeLookup: '',
   },
   getters: {
 
@@ -24,10 +26,12 @@ const addresses = {
       state.loading = false;
       state.error = '';
       state.successMessage = '';
+      state.zipcodeLookup = '';
     },
     resetMessages(state) {
       state.error = '';
       state.successMessage = '';
+      state.zipcodeLookup = '';
     },
     setLoadingStatus(state, status) {
       state.loading = status;
@@ -44,6 +48,9 @@ const addresses = {
     setSuccessMessage(state, message) {
       state.successMessage = message;
     },
+    setZipcodeLookup(state, fullZip) {
+      state.zipcodeLookup = fullZip;
+    },
   },
   actions: {
     resetState({ commit }) {
@@ -59,8 +66,7 @@ const addresses = {
       try {
         commit('setLoadingStatus', true);
         const response = await allContacts();
-        const payload = await response.json();
-        commit('setAddresses', payload);
+        commit('setAddresses', response.body);
         commit('setLoadingStatus', false);
       } catch (err) {
         commit('setError', 'Error getting all contacts');
@@ -97,6 +103,18 @@ const addresses = {
         commit('setSuccessMessage', 'Contact edited successfully!');
       } catch (err) {
         commit('setError', 'Error editing contact');
+      }
+    },
+    async zipcodeLookup({ commit }, payload) {
+      try {
+        commit('setLoadingStatus', true);
+        const response = await zipcodeLookup(payload);
+        const { zip5, zip4 } = response.body;
+        commit('setZipcodeLookup', `${zip5}-${zip4}`);
+        commit('setLoadingStatus', false);
+        commit('setSuccessMessage', 'Zip code found');
+      } catch (err) {
+        commit('setError', 'Zip code not found :/');
       }
     },
   },

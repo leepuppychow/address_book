@@ -14,7 +14,7 @@
           <input v-model="street" type="text" placeholder="Street">
           <input v-model="city" type="text" placeholder="City">
           <input v-model="state" type="text" placeholder="State">
-          <input v-model="zip" type="number" placeholder="Zip">
+          <input v-model="zip" type="text" placeholder="Zip">
         </div>
         <div>
           <button @click="zipLookup" class="contact-form-btns">Lookup Zipcode</button>
@@ -81,8 +81,14 @@ export default {
     closePopup() {
       this.$store.dispatch('modals/hideContactFormPopup');
     },
-    zipLookup() {
-
+    async zipLookup() {
+      const payload = {
+        street: this.street,
+        city: this.city,
+        state: this.state,
+      };
+      await this.$store.dispatch('addresses/zipcodeLookup', payload);
+      this.zip = this.$store.state.addresses.zipcodeLookup;
     },
     submit() {
       const payload = {
