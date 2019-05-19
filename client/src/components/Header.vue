@@ -13,20 +13,20 @@ export default {
   data() {
     return {
       showHeader: false,
-    }
+    };
   },
   watch: {
-    $route () {
-      this.showHeader = this.$route.path === "/" ? false : true;
-    }
+    $route() {
+      this.showHeader = this.$route.path !== '/';
+    },
   },
   methods: {
     async logout() {
       await this.$store.dispatch('users/logout');
       this.$router.push('/');
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

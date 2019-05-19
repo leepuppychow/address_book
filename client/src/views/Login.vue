@@ -24,7 +24,7 @@ export default {
     return {
       email: '',
       password: '',
-    }
+    };
   },
   computed: {
     success() {
@@ -50,7 +50,7 @@ export default {
       if (this.success) this.$router.push('dashboard');
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -84,4 +84,3 @@ export default {
   }
 }
 </style>
-

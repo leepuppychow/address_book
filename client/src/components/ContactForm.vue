@@ -39,12 +39,14 @@ export default {
       city: '',
       state: '',
       zip: '',
-    }
+    };
   },
   created() {
     if (this.formType === 'edit' && this.selectedContact) {
-      const { id, first_name, last_name, phone, email, street, city, state, zip } = this.selectedContact;
-      
+      const {
+        id, first_name, last_name, phone, email, street, city, state, zip,
+      } = this.selectedContact;
+
       this.addressId = id;
       this.firstName = first_name;
       this.lastName = last_name;
@@ -71,7 +73,7 @@ export default {
     },
     message() {
       const { successMessage, error } = this.$store.state.addresses;
-      return successMessage ? successMessage : error;
+      return successMessage || error;
     },
     selectedContact() {
       return this.$store.state.addresses.selectedContact;
@@ -110,7 +112,7 @@ export default {
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
