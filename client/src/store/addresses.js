@@ -22,7 +22,7 @@ const addresses = {
   mutations: {
     resetState(state) {
       state.all = [];
-      state.selectContact = null;
+      state.selectedContact = null;
       state.loading = false;
       state.error = '';
       state.successMessage = '';
@@ -75,6 +75,7 @@ const addresses = {
     async deleteContact({ commit, dispatch }, addressId) {
       try {
         commit('setLoadingStatus', true);
+        dispatch('resetState');
         await deleteContact(addressId);
         dispatch('getAllContacts');
         commit('setLoadingStatus', false);
