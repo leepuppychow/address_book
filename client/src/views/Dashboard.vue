@@ -33,12 +33,14 @@ export default {
     if (!token) next(false);
     next(async (vm) => {
       await vm.$store.dispatch('users/validateToken', token);
-      if (!vm.validToken) next('/');
+      if (!vm.validToken) {
+        next('/');
+      } else {
+        await vm.$store.dispatch('addresses/getAllContacts');
+        next();
+      }
     })
   },
-  async created() {
-    await this.$store.dispatch('addresses/getAllContacts');
-  }
 }
 </script>
 
