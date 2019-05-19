@@ -4,18 +4,18 @@
       <h3>All Contacts</h3>
       <button @click="showPopup">Add New Contact</button>
     </header>
-    <div 
+    <div
       class="contact-wrapper"
       :key="a.id"
       v-for="a in addresses"
     >
-      <p 
+      <p
         class="contact-row"
         @click="selectContact(a.id)"
       >
         {{ a.first_name }} {{ a.last_name }}
       </p>
-      <img 
+      <img
         @click="deleteContact(a.id)"
         class="delete-icon"
         src="@/images/delete.svg"
@@ -41,9 +41,9 @@ export default {
     },
     deleteContact(addressId) {
       this.$store.dispatch('addresses/deleteContact', addressId);
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -10,7 +10,7 @@
       <p>{{ selectedContact.phone }}</p>
       <p>{{ selectedContact.email }}</p>
     </div>
-  </div>  
+  </div>
 </template>
 
 <script>
@@ -25,7 +25,7 @@ export default {
       this.$store.dispatch('modals/showContactFormPopup', 'edit');
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

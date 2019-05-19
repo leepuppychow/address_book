@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import ContactList from "../components/ContactList";
-import ContactCard from "../components/ContactCard";
-import ContactForm from '../components/ContactForm';
+import ContactList from '../components/ContactList.vue';
+import ContactCard from '../components/ContactCard.vue';
+import ContactForm from '../components/ContactForm.vue';
 
 export default {
   components: {
@@ -26,7 +26,7 @@ export default {
     },
     addresses() {
       return this.$store.state.addresses.all;
-    }
+    },
   },
   beforeRouteEnter(to, from, next) {
     const token = sessionStorage.getItem('addressToken');
@@ -39,9 +39,9 @@ export default {
         await vm.$store.dispatch('addresses/getAllContacts');
         next();
       }
-    })
+    });
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -51,4 +51,3 @@ export default {
   width: 100vw;
 }
 </style>
-

@@ -7,14 +7,14 @@
           <button @click="closePopup">Close</button>
         </header>
         <div class="form-wrapper">
-          <input v-model="firstName" type="text" placeholder="First Name">
-          <input v-model="lastName" type="text" placeholder="Last Name">
-          <input v-model="phone" type="text" placeholder="Phone">
-          <input v-model="email" type="text" placeholder="Email">
-          <input v-model="street" type="text" placeholder="Street">
-          <input v-model="city" type="text" placeholder="City">
-          <input v-model="state" type="text" placeholder="State">
-          <input v-model="zip" type="text" placeholder="Zip">
+          <input id="contact-first-name" v-model="firstName" type="text" placeholder="First Name">
+          <input id="contact-last-name" v-model="lastName" type="text" placeholder="Last Name">
+          <input id="contact-phone" v-model="phone" type="text" placeholder="Phone">
+          <input id="contact-email" v-model="email" type="text" placeholder="Email">
+          <input id="contact-street" v-model="street" type="text" placeholder="Street">
+          <input id="contact-city" v-model="city" type="text" placeholder="City">
+          <input id="contact-state" v-model="state" type="text" placeholder="State">
+          <input id="contact-zip" v-model="zip" type="text" placeholder="Zip">
         </div>
         <div>
           <button @click="zipLookup" class="contact-form-btns">Lookup Zipcode</button>
@@ -39,12 +39,14 @@ export default {
       city: '',
       state: '',
       zip: '',
-    }
+    };
   },
   created() {
     if (this.formType === 'edit' && this.selectedContact) {
-      const { id, first_name, last_name, phone, email, street, city, state, zip } = this.selectedContact;
-      
+      const {
+        id, first_name, last_name, phone, email, street, city, state, zip,
+      } = this.selectedContact;
+
       this.addressId = id;
       this.firstName = first_name;
       this.lastName = last_name;
@@ -71,7 +73,7 @@ export default {
     },
     message() {
       const { successMessage, error } = this.$store.state.addresses;
-      return successMessage ? successMessage : error;
+      return successMessage || error;
     },
     selectedContact() {
       return this.$store.state.addresses.selectedContact;
@@ -110,7 +112,7 @@ export default {
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
