@@ -1,6 +1,5 @@
 <template>
   <div class="contact-card">
-    <ContactForm v-if="popupVisible"/>
     <div v-if="selectedContact">
       <header>
         <h3>{{ selectedContact.first_name }} {{ selectedContact.last_name }}</h3>
@@ -15,23 +14,15 @@
 </template>
 
 <script>
-import ContactForm from './ContactForm';
-
 export default {
-  components: {
-    ContactForm,
-  },
   computed: {
-    popupVisible() {
-      return this.$store.state.modals.contactFormVisible;
-    },
     selectedContact() {
       return this.$store.state.addresses.selectedContact;
     },
   },
   methods: {
     showPopup() {
-      this.$store.dispatch('modals/showContactFormPopup');
+      this.$store.dispatch('modals/showContactFormPopup', 'edit');
     },
   },
 }

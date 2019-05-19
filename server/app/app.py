@@ -88,9 +88,9 @@ def create_address():
   city = request.json['city']
   state = request.json['state']
   zip = request.json['zip']
-  favorite = request.json['favorite']
+  # favorite = request.json['favorite'] # TODO: add in favorite functionality
 
-  new_address = Address.create(first_name, last_name, phone, email, street, city, state, zip, favorite)
+  new_address = Address.create(first_name, last_name, phone, email, street, city, state, zip)
   if new_address is not None:
     return address_schema.jsonify(new_address), 201
   else:
@@ -116,13 +116,13 @@ def update_address(id):
   city = request.json['city']
   state = request.json['state']
   zip = request.json['zip']
-  favorite = request.json['favorite']
+  # favorite = request.json['favorite'] # TODO: add in favorite functionality
 
   address = Address.find(id)
   if address is None:
     return jsonify(message="Error updating address, not found"), 404
   
-  updated_address = address.update(first_name, last_name, phone, email, street, city, state, zip, favorite)
+  updated_address = address.update(first_name, last_name, phone, email, street, city, state, zip)
   return address_schema.jsonify(updated_address), 200
 
 @app.route("/api/v1/addresses/<id>", methods=["DELETE"])

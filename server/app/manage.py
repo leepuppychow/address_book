@@ -28,9 +28,9 @@ def insert_users_and_addresses():
     db.session.flush()
 
     addresses = [
-      Address(user1.id, "first1", "last1", "720342373", "test1@test.com", "123 Test way", 'Denver', 'CO', '81111', False),
-      Address(user1.id, "first2", "last2", "720342373", "test2@test.com", "456 Test way", 'Denver', 'CO', '81111', False),
-      Address(user2.id, "first3", "last3", "720342373", "test3@test.com", "789 Test way", 'Denver', 'CO', '81111', False),
+      Address(user1.id, "first1", "last1", "720342373", "test1@test.com", "123 Test way", 'Denver', 'CO', '81111'),
+      Address(user1.id, "first2", "last2", "720342373", "test2@test.com", "456 Test way", 'Denver', 'CO', '81111'),
+      Address(user2.id, "first3", "last3", "720342373", "test3@test.com", "789 Test way", 'Denver', 'CO', '81111'),
     ]
     db.session.bulk_save_objects(addresses)
     db.session.commit()

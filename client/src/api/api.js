@@ -48,3 +48,10 @@ export const deleteContact = id => Vue.http.delete(`${baseUrl}/addresses/${id}`,
     Authorization: `Bearer ${sessionStorage.getItem('addressToken')}`,
   },
 });
+
+export const zipcodeLookup = body => Vue.http.post(`${baseUrl}/zipcode-lookup`, body, {
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${sessionStorage.getItem('addressToken')}`,
+  },
+});
