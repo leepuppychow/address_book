@@ -7,14 +7,14 @@
           <button @click="closePopup">Close</button>
         </header>
         <div class="form-wrapper">
-          <input type="text" placeholder="First Name">
-          <input type="text" placeholder="Last Name">
-          <input type="text" placeholder="Phone">
-          <input type="text" placeholder="Email">
-          <input type="text" placeholder="Street">
-          <input type="text" placeholder="City">
-          <input type="text" placeholder="State">
-          <input type="number" placeholder="Zip">
+          <input v-model="firstName" type="text" placeholder="First Name">
+          <input v-model="lastName" type="text" placeholder="Last Name">
+          <input v-model="phone" type="text" placeholder="Phone">
+          <input v-model="email" type="text" placeholder="Email">
+          <input v-model="street" type="text" placeholder="Street">
+          <input v-model="city" type="text" placeholder="City">
+          <input v-model="state" type="text" placeholder="State">
+          <input v-model="zip" type="number" placeholder="Zip">
         </div>
         <div>
           <button @click="zipLookup" class="contact-form-btns">Lookup Zipcode</button>
@@ -27,6 +27,31 @@
 
 <script>
 export default {
+  data() {
+    return {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      street: '',
+      city: '',
+      state: '',
+      zip: '',
+    }
+  },
+  created() {
+    if (this.formType === 'edit' && this.selectedContact) {
+      const { first_name, last_name, phone, email, street, city, state, zip } = this.selectedContact;
+      this.firstName = first_name;
+      this.lastName = last_name;
+      this.phone = phone;
+      this.email = email;
+      this.street = street;
+      this.city = city;
+      this.state = state;
+      this.zip = zip;
+    }
+  },
   computed: {
     formType() {
       return this.$store.state.modals.contactFormType;
