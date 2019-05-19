@@ -2,16 +2,18 @@
   <div class="login">
     <h1>Please Login or Register</h1>
     <input
+      id="login-email"
       type="text"
       placeholder="Enter email"
       v-model="email"
     >
     <input
+      id="login-password"
       type="password"
       placeholder="Enter password"
       v-model="password"
     >
-    <button @click="login">Login</button>
+    <button id="login" @click="login">Login</button>
     <p>Or</p>
     <button @click="register">Register</button>
     <p id="error-message">{{ userError }}</p>
