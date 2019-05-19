@@ -21,8 +21,9 @@ const modals = {
     showContactFormPopup({ commit }, formType) {
       commit('showContactFormPopup', formType);
     },
-    hideContactFormPopup({ commit }) {
+    hideContactFormPopup({ commit, dispatch }) {
       commit('hideContactFormPopup');
+      dispatch('addresses/resetMessages', null, { root: true });
     },
   },
 };

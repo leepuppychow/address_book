@@ -1,6 +1,8 @@
 import {
   allContacts,
   deleteContact,
+  createContact,
+  editContact,
 } from '../api/api';
 
 const addresses = {
@@ -10,6 +12,7 @@ const addresses = {
     selectedContact: null,
     loading: false,
     error: '',
+    successMessage: '',
   },
   getters: {
 
@@ -20,6 +23,11 @@ const addresses = {
       state.selectContact = null;
       state.loading = false;
       state.error = '';
+      state.successMessage = '';
+    },
+    resetMessages(state) {
+      state.error = '';
+      state.successMessage = '';
     },
     setLoadingStatus(state, status) {
       state.loading = status;
@@ -33,10 +41,16 @@ const addresses = {
     selectContact(state, addressId) {
       state.selectedContact = state.all.find(a => a.id === addressId);
     },
+    setSuccessMessage(state, message) {
+      state.successMessage = message;
+    },
   },
   actions: {
     resetState({ commit }) {
       commit('resetState');
+    },
+    resetMessages({ commit }) {
+      commit('resetMessages');
     },
     selectContact({ commit }, addressId) {
       commit('selectContact', addressId);
@@ -49,7 +63,7 @@ const addresses = {
         commit('setAddresses', payload);
         commit('setLoadingStatus', false);
       } catch (err) {
-        commit('setError', 'Error getting all addresses');
+        commit('setError', 'Error getting all contacts');
       }
     },
     async deleteContact({ commit, dispatch }, addressId) {
@@ -59,7 +73,30 @@ const addresses = {
         dispatch('getAllContacts');
         commit('setLoadingStatus', false);
       } catch (err) {
-        commit('setError', 'Error deleting address');
+        commit('setError', 'Error deleting contact');
+      }
+    },
+    async createContact({ commit, dispatch }, payload) {
+      try {
+        commit('setLoadingStatus', true);
+        await createContact(payload);
+        dispatch('getAllContacts');
+        commit('setLoadingStatus', false);
+        commit('setSuccessMessage', 'Contact created successfully!');
+      } catch (err) {
+        commit('setError', 'Error creating contact');
+      }
+    },
+    async editContact({ commit, dispatch }, payload) {
+      try {
+        commit('setLoadingStatus', true);
+        await editContact(payload.id, payload);
+        await dispatch('getAllContacts');
+        await dispatch('selectContact', payload.id);
+        commit('setLoadingStatus', false);
+        commit('setSuccessMessage', 'Contact edited successfully!');
+      } catch (err) {
+        commit('setError', 'Error editing contact');
       }
     },
   },

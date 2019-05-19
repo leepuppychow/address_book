@@ -20,6 +20,7 @@
           <button @click="zipLookup" class="contact-form-btns">Lookup Zipcode</button>
           <button @click="submit" class="contact-form-btns">Submit</button>
         </div>
+        <p>{{ message }}</p>
       </div>
     </div>
   </transition>
@@ -29,6 +30,7 @@
 export default {
   data() {
     return {
+      addressId: 0,
       firstName: '',
       lastName: '',
       phone: '',
@@ -41,7 +43,9 @@ export default {
   },
   created() {
     if (this.formType === 'edit' && this.selectedContact) {
-      const { first_name, last_name, phone, email, street, city, state, zip } = this.selectedContact;
+      const { id, first_name, last_name, phone, email, street, city, state, zip } = this.selectedContact;
+      
+      this.addressId = id;
       this.firstName = first_name;
       this.lastName = last_name;
       this.phone = phone;
@@ -65,6 +69,10 @@ export default {
         return '';
       }
     },
+    message() {
+      const { successMessage, error } = this.$store.state.addresses;
+      return successMessage ? successMessage : error;
+    },
     selectedContact() {
       return this.$store.state.addresses.selectedContact;
     },
@@ -77,7 +85,23 @@ export default {
 
     },
     submit() {
-      
+      const payload = {
+        id: this.addressId,
+        first_name: this.firstName,
+        last_name: this.lastName,
+        phone: this.phone,
+        email: this.email,
+        street: this.street,
+        city: this.city,
+        state: this.state,
+        zip: this.zip,
+      };
+
+      if (this.formType === 'new') {
+        this.$store.dispatch('addresses/createContact', payload);
+      } else if (this.formType === 'edit') {
+        this.$store.dispatch('addresses/editContact', payload);
+      }
     },
   },
 }
@@ -97,7 +121,7 @@ export default {
 }
 
 .contact-form-modal {
-  width: 70vw;
+  width: 50vw;
   height: 80vh;
   background-color: white;
   border-radius: 5px;
