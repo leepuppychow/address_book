@@ -1,6 +1,5 @@
 <template>
   <div id="all-contacts">
-    <ContactForm v-if="popupVisible"/>
     <header>
       <h3>All Contacts</h3>
       <button @click="showPopup">Add New Contact</button>
@@ -27,23 +26,15 @@
 </template>
 
 <script>
-import ContactForm from './ContactForm';
-
 export default {
-  components: {
-    ContactForm,
-  },
   computed: {
-    popupVisible() {
-      return this.$store.state.modals.contactFormVisible;
-    },
     addresses() {
       return this.$store.state.addresses.all;
     },
   },
   methods: {
     showPopup() {
-      this.$store.dispatch('modals/showContactFormPopup');
+      this.$store.dispatch('modals/showContactFormPopup', 'new');
     },
     selectContact(addressId) {
       this.$store.dispatch('addresses/selectContact', addressId);

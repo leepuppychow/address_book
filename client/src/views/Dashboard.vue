@@ -1,5 +1,6 @@
 <template>
   <div id="dashboard">
+    <ContactForm v-if="popupVisible"/>
     <ContactList />
     <ContactCard />
   </div>
@@ -8,13 +9,18 @@
 <script>
 import ContactList from "../components/ContactList";
 import ContactCard from "../components/ContactCard";
+import ContactForm from '../components/ContactForm';
 
 export default {
   components: {
     ContactList,
     ContactCard,
+    ContactForm,
   },
   computed: {
+    popupVisible() {
+      return this.$store.state.modals.contactFormVisible;
+    },
     validToken() {
       return this.$store.state.users.success;
     },

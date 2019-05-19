@@ -2,21 +2,24 @@ const modals = {
   namespaced: true,
   state: {
     contactFormVisible: false,
+    contactFormType: '',
   },
   getters: {
 
   },
   mutations: {
-    showContactFormPopup(state) {
+    showContactFormPopup(state, formType) {
       state.contactFormVisible = true;
+      state.contactFormType = formType;
     },
     hideContactFormPopup(state) {
       state.contactFormVisible = false;
+      state.contactFormType = '';
     },
   },
   actions: {
-    showContactFormPopup({ commit }) {
-      commit('showContactFormPopup');
+    showContactFormPopup({ commit }, formType) {
+      commit('showContactFormPopup', formType);
     },
     hideContactFormPopup({ commit }) {
       commit('hideContactFormPopup');
