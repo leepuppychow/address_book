@@ -46,8 +46,11 @@
 
 ## Client (Vue.js)
 
-* Node.js version: 8.9.4
+* Use: _Node.js version: 8.9.4_
 * From the `/client` directory:
+* NOTE: if there is an issue running the client-side code locally, you can view the most recent app here:
+
+[On Amazon S3](http://lee-address-book.s3-website-us-west-2.amazonaws.com/#/)
 
 ### Project setup
 
