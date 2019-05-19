@@ -67,6 +67,11 @@ export default {
   .contact-row {
     cursor: pointer;
     white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+      font-weight: 600;
+    }
   }
   .delete-icon {
     cursor: pointer;
