@@ -46,21 +46,29 @@
 
 ## Client (Vue.js)
 
-### Project setup (have server running first)
+### Project setup
 
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
+* Make sure that server is running.
+
 ```
-npm run serve
+npm start
 ```
 
-* You can login with a test user:
+* You can login with test users:
 
 ```
     EMAIL = test@test.com
+    PASSWORD = password
+```
+
+```
+    EMAIL = test2@test.com
     PASSWORD = password
 ```
 
