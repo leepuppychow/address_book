@@ -39,8 +39,9 @@ export default {
     }
   }
 
-  height: 100%;
-  width: 50%;
-  border: solid 1px $app-blue;
+    height: 98%;
+    width: 50%;
+    margin: 3% 2% 0 1.5%;
+    background-color: #fefefe;
 }
 </style>

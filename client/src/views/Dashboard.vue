@@ -49,5 +49,6 @@ export default {
   @include flex(row, center, center);
   height: calc(100vh - 60px);
   width: 100vw;
+  background-color: #f4f2f2;
 }
 </style>

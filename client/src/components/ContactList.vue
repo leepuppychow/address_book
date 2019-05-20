@@ -2,7 +2,7 @@
   <div id="all-contacts">
     <header>
       <h3>All Contacts</h3>
-      <button @click="showPopup">Add New Contact</button>
+      <button @click="showPopup">Add New</button>
     </header>
     <div
       class="contact-wrapper"
@@ -48,9 +48,10 @@ export default {
 
 <style lang="scss" scoped>
 #all-contacts {
-  height: 100%;
+  height: 98%;
   width: 50%;
-  border: solid 1px $app-blue;
+  margin: 3% 3% 0 2%;
+  background-color: #fefefe;
 
   header {
     @include flex(row, space-between, center);
@@ -58,15 +59,17 @@ export default {
 
     button {
       cursor: pointer;
+      border-radius: 5px;
     }
   }
 }
 .contact-wrapper {
-  @include flex(row, center, center);
+  @include flex(row, space-between, center);
 
   .contact-row {
     cursor: pointer;
     white-space: nowrap;
+    margin-left: 70px;
 
     &:hover {
       text-decoration: underline;
@@ -76,8 +79,8 @@ export default {
   .delete-icon {
     cursor: pointer;
     height: 20px;
-    margin-left: 36px;
     width: auto;
+    margin-right: 70px;
   }
 }
 </style>
