@@ -2,7 +2,7 @@
   <div id="all-contacts">
     <header>
       <h3>ALL CONTACTS</h3>
-      <button @click="showPopup">Add New</button>
+      <button @click="showPopup">Add Contact</button>
     </header>
     <div
       class="contact-wrapper"
