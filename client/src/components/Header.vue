@@ -1,7 +1,7 @@
 <template>
   <div id="nav" v-if="showHeader">
     <div id="logo-wrapper">
-      <img class='address-book-icon' src='../images/address-book-icon.png'/>
+      <img class='address-book-icon' src='../images/owl.png'/>
       <h2>Addr</h2>
     </div>
     <a @click="logout">LOGOUT</a>
@@ -56,7 +56,7 @@ export default {
   }
 
   .address-book-icon {
-    height: 30px;
+    height: 35px;
     margin-left: 10px;
   }
 }
