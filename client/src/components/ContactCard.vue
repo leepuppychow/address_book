@@ -5,9 +5,12 @@
         <h3>{{ selectedContact.first_name }} {{ selectedContact.last_name }}</h3>
         <button @click="showPopup">Edit Contact</button>
       </header>
+      <i class="fas fa-home"></i> 
       <p>{{ selectedContact.street }}</p>
       <p>{{ selectedContact.city }}, {{ selectedContact.state }} {{ selectedContact.zip }}</p>
+      <i class="fas fa-phone-volume"></i>
       <p>{{ selectedContact.phone }}</p>
+      <i class="far fa-envelope"></i>
       <p>{{ selectedContact.email }}</p>
     </div>
   </div>
@@ -33,6 +36,7 @@ export default {
   header {
     @include flex(row, space-between, center);
     padding: 0 15px;
+    border-bottom: 2px solid #f4f2f2;
 
     button {
       cursor: pointer;
@@ -43,9 +47,29 @@ export default {
     }
   }
 
-    height: 30%;
+    height: 45%;
     width: 50%;
     margin: 3% 2% 0 1.5%;
     background-color: #fefefe;
+
+    .fa-home, 
+    .fa-phone-volume, 
+    .fa-envelope {
+      font-size: 25px;
+      margin-bottom: -10px;
+    }
+
+    .fa-home {
+      padding-top: 20px;
+      color: #7f6f4a;
+    }
+
+    .fa-phone-volume {
+      color: $app-blue;
+    }
+
+    .fa-envelope {
+      color: #ffa449;
+    }
 }
 </style>
