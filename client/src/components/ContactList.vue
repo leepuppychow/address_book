@@ -1,7 +1,7 @@
 <template>
   <div id="all-contacts">
     <header>
-      <h3>All Contacts</h3>
+      <h3>ALL CONTACTS</h3>
       <button @click="showPopup">Add New</button>
     </header>
     <div
@@ -55,21 +55,26 @@ export default {
 
   header {
     @include flex(row, space-between, center);
-    padding: 0 24px;
+    padding: 0 15px;
+    border-bottom: 2px solid #f4f2f2;
 
     button {
       cursor: pointer;
       border-radius: 5px;
+      height: 24px;
+      padding: 0 5px;
+      background-color: #f4f2f2;
     }
   }
 }
 .contact-wrapper {
   @include flex(row, space-between, center);
+  border-bottom: 2px solid #f4f2f2;
 
   .contact-row {
     cursor: pointer;
     white-space: nowrap;
-    margin-left: 70px;
+    margin-left: 15px;
 
     &:hover {
       text-decoration: underline;
@@ -80,7 +85,7 @@ export default {
     cursor: pointer;
     height: 20px;
     width: auto;
-    margin-right: 70px;
+    margin-right: 15px;
   }
 }
 </style>
