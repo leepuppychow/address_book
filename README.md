@@ -2,6 +2,9 @@
 
 ## Server (Docker, Flask, postgreSQL)
 
+## Desktop Screenshot
+![Screenshot](Addr-Dashboard-Screenshot.png)
+
 ### Setup (instructions are for MacOS)
 
 1. [Need to have Docker installed](https://docs.docker.com/install/)
