@@ -1,7 +1,8 @@
 # ADDRESS BOOK APPLICATION
 
-## Desktop Screenshot
-![Screenshot](Addr-Dashboard-Screenshot.png)
+### Dashboard Screenshot
+
+![Screenshot](./Addr-Screenshot.png)
 
 ## Server (Docker, Flask, postgreSQL)
 
