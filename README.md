@@ -103,3 +103,7 @@ npm run test:unit
 npm run test:e2e
 ```
 
+#### Contributors:
+Lee Chow
+Heather Hartley
+
