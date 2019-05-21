@@ -104,6 +104,6 @@ npm run test:e2e
 ```
 
 #### Contributors:
-Lee Chow
-Heather Hartley
+* Lee Chow
+* Heather Hartley
 
