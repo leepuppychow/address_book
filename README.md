@@ -105,5 +105,5 @@ npm run test:e2e
 
 #### Contributors:
 * Lee Chow
-* Heather Hartley
+* [Heather Hartley](https://github.com/hlhartley) - Frontend UI & Design 
 
