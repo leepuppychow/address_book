@@ -1,5 +1,9 @@
 # ADDRESS BOOK APPLICATION
 
+### App Screenshot
+
+![Screenshot](./Addr-Screenshot.png)
+
 ## Server (Docker, Flask, postgreSQL)
 
 ### Setup (instructions are for MacOS)
