@@ -1,9 +1,9 @@
 # ADDRESS BOOK APPLICATION
 
-## Server (Docker, Flask, postgreSQL)
-
 ## Desktop Screenshot
 ![Screenshot](Addr-Dashboard-Screenshot.png)
+
+## Server (Docker, Flask, postgreSQL)
 
 ### Setup (instructions are for MacOS)
 
