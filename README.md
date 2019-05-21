@@ -1,6 +1,6 @@
 # ADDRESS BOOK APPLICATION
 
-### App Screenshot
+### Dashboard Screenshot
 
 ![Screenshot](./Addr-Screenshot.png)
 
