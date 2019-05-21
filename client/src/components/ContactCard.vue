@@ -36,21 +36,21 @@ export default {
   header {
     @include flex(row, space-between, center);
     padding: 0 15px;
-    border-bottom: 2px solid #f4f2f2;
+    border-bottom: 2px solid $app-lightgrey;
 
     button {
       cursor: pointer;
       border-radius: 5px;
       height: 24px;
       padding: 0 5px;
-      background-color: #f4f2f2;
+      background-color: $app-lightgrey;
     }
   }
 
     height: 45%;
     width: 50%;
     margin: 3% 2% 0 1.5%;
-    background-color: #fefefe;
+    background-color: $app-white;
 
     .fa-home, 
     .fa-phone-volume, 
@@ -61,7 +61,7 @@ export default {
 
     .fa-home {
       padding-top: 20px;
-      color: #7f6f4a;
+      color: $app-brown;
     }
 
     .fa-phone-volume {
@@ -69,7 +69,7 @@ export default {
     }
 
     .fa-envelope {
-      color: #ffa449;
+      color: $app-orange;
     }
 }
 </style>

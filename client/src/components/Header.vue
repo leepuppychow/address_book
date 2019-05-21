@@ -37,7 +37,7 @@ export default {
   background: $app-blue;
   height: 60px;
   width: 100vw;
-  color: white;
+  color: #FFF;
 
   a {
     font-weight: bold;

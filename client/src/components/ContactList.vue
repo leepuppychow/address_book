@@ -51,25 +51,25 @@ export default {
   height: 98%;
   width: 50%;
   margin: 3% 3% 0 2%;
-  background-color: #fefefe;
+  background-color: $app-white;
 
   header {
     @include flex(row, space-between, center);
     padding: 0 15px;
-    border-bottom: 2px solid #f4f2f2;
+    border-bottom: 2px solid $app-lightgrey;
 
     button {
       cursor: pointer;
       border-radius: 5px;
       height: 24px;
       padding: 0 5px;
-      background-color: #f4f2f2;
+      background-color: $app-lightgrey;
     }
   }
 }
 .contact-wrapper {
   @include flex(row, space-between, center);
-  border-bottom: 2px solid #f4f2f2;
+  border-bottom: 2px solid $app-lightgrey;
 
   .contact-row {
     cursor: pointer;

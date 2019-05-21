@@ -49,6 +49,6 @@ export default {
   @include flex(row, center, flex-start);
   height: calc(100vh - 60px);
   width: 100vw;
-  background-color: #f4f2f2;
+  background-color: $app-lightgrey;
 }
 </style>

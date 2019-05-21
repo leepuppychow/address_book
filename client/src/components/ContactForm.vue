@@ -131,7 +131,7 @@ export default {
 .contact-form-modal {
   width: 50vw;
   height: 80vh;
-  background-color: white;
+  background-color: #FFF;
   border-radius: 5px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.3);
 
