@@ -17,7 +17,7 @@ const addresses = {
     zipcodeLookup: '',
   },
   getters: {
-
+    favorites: state => state.all.filter(a => a.favorite),
   },
   mutations: {
     resetState(state) {

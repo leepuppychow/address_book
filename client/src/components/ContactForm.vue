@@ -103,6 +103,7 @@ export default {
         city: this.city,
         state: this.state,
         zip: this.zip,
+        favorite: false,
       };
 
       if (this.formType === 'new') {
