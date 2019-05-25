@@ -65,7 +65,7 @@ export default {
   height: 100vh;
 
   h1, p {
-    color: white;
+    color: #FFF;
   }
   input {
     width: 400px;
@@ -79,7 +79,7 @@ export default {
     border-radius: 16px;
     font-size: 20px;
     margin-top: 10px;
-    background: white;
+    background: #FFF;
   }
   #error-message {
     color: red;

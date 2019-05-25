@@ -1,8 +1,8 @@
 <template>
   <div id="nav" v-if="showHeader">
     <div id="logo-wrapper">
-      <img class='address-book-icon' src='../images/address-book-icon.png'/>
-      <h2>Addr Reader</h2>
+      <img class='address-book-icon' src='../images/owl.png'/>
+      <h2>Addr</h2>
     </div>
     <a @click="logout">LOGOUT</a>
   </div>
@@ -37,7 +37,7 @@ export default {
   background: $app-blue;
   height: 60px;
   width: 100vw;
-  color: white;
+  color: #FFF;
 
   a {
     font-weight: bold;
@@ -46,6 +46,9 @@ export default {
   }
   h2 {
     margin-left: 5px;
+    font-family: 'Trocchi', serif;
+    font-size: 24px;
+    letter-spacing: 1px;
   }
 
   #logo-wrapper {
@@ -53,7 +56,7 @@ export default {
   }
 
   .address-book-icon {
-    height: 30px;
+    height: 35px;
     margin-left: 10px;
   }
 }

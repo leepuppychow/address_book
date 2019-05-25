@@ -1,8 +1,8 @@
 <template>
   <div id="all-contacts">
     <header>
-      <h3>All Contacts</h3>
-      <button @click="showPopup">Add New Contact</button>
+      <h3>ALL CONTACTS</h3>
+      <button @click="showPopup">Add Contact</button>
     </header>
     <div
       class="contact-wrapper"
@@ -48,25 +48,33 @@ export default {
 
 <style lang="scss" scoped>
 #all-contacts {
-  height: 100%;
+  height: 98%;
   width: 50%;
-  border: solid 1px $app-blue;
+  margin: 3% 3% 0 2%;
+  background-color: $app-white;
 
   header {
     @include flex(row, space-between, center);
-    padding: 0 24px;
+    padding: 0 15px;
+    border-bottom: 2px solid $app-lightgrey;
 
     button {
       cursor: pointer;
+      border-radius: 5px;
+      height: 24px;
+      padding: 0 5px;
+      background-color: $app-lightgrey;
     }
   }
 }
 .contact-wrapper {
-  @include flex(row, center, center);
+  @include flex(row, space-between, center);
+  border-bottom: 2px solid $app-lightgrey;
 
   .contact-row {
     cursor: pointer;
     white-space: nowrap;
+    margin-left: 15px;
 
     &:hover {
       text-decoration: underline;
@@ -76,8 +84,8 @@ export default {
   .delete-icon {
     cursor: pointer;
     height: 20px;
-    margin-left: 36px;
     width: auto;
+    margin-right: 15px;
   }
 }
 </style>

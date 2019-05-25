@@ -46,8 +46,9 @@ export default {
 
 <style lang="scss" scoped>
 #dashboard {
-  @include flex(row, center, center);
+  @include flex(row, center, flex-start);
   height: calc(100vh - 60px);
   width: 100vw;
+  background-color: $app-lightgrey;
 }
 </style>

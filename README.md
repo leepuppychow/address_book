@@ -1,5 +1,9 @@
 # ADDRESS BOOK APPLICATION
 
+### Dashboard Screenshot
+
+![Screenshot](./Addr-Screenshot.png)
+
 ## Server (Docker, Flask, postgreSQL)
 
 ### Setup (instructions are for MacOS)
@@ -46,7 +50,11 @@
 
 ## Client (Vue.js)
 
-* Node.js version: 8.9.4
+* NOTE: if there is an issue running the client-side code locally, you can view the most recent app with the link below. You still need the server running locally (I did not want to deploy the server and database at this time):
+
+    [On Amazon S3](http://lee-address-book.s3-website-us-west-2.amazonaws.com/#/)
+
+* Use: _Node.js version: 8.9.4_
 * From the `/client` directory:
 
 ### Project setup
@@ -94,4 +102,8 @@ npm run test:unit
 ```
 npm run test:e2e
 ```
+
+#### Contributors:
+* Lee Chow
+* [Heather Hartley](https://github.com/hlhartley) - Frontend UI & Design 
 
