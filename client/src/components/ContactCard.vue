@@ -47,7 +47,7 @@ export default {
     }
   }
 
-    height: 45%;
+    height: fit-content;
     width: 50%;
     margin: 3% 2% 0 1.5%;
     background-color: $app-white;
