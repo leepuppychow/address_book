@@ -8,11 +8,9 @@
       class="contact-wrapper"
       :key="a.id"
       v-for="a in addresses"
+      @click="selectContact(a.id)"
     >
-      <p
-        class="contact-row"
-        @click="selectContact(a.id)"
-      >
+      <p class="contact-row">
         {{ a.first_name }} {{ a.last_name }}
       </p>
       <img
@@ -30,6 +28,9 @@ export default {
   computed: {
     addresses() {
       return this.$store.state.addresses.all;
+    },
+    favorites() {
+      return this.$store.getters['addresses/favorites'];
     },
   },
   methods: {
@@ -70,9 +71,9 @@ export default {
 .contact-wrapper {
   @include flex(row, space-between, center);
   border-bottom: 2px solid $app-lightgrey;
+  cursor: pointer;
 
   .contact-row {
-    cursor: pointer;
     white-space: nowrap;
     margin-left: 15px;
 

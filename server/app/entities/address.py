@@ -18,7 +18,7 @@ class Address(db.Model):
   zip = db.Column(db.String(80))
   user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
-  def __init__(self, user_id, first_name, last_name, phone, email, street, city, state, zip):
+  def __init__(self, user_id, first_name, last_name, phone, email, street, city, state, zip, favorite):
     self.user_id = user_id
     self.first_name = first_name
     self.last_name = last_name
@@ -28,7 +28,7 @@ class Address(db.Model):
     self.city = city
     self.state = state
     self.zip = zip
-    self.favorite = False # TODO: Add in this functionality later
+    self.favorite = False
   
   @staticmethod
   def all():
@@ -39,8 +39,8 @@ class Address(db.Model):
     return Address.query.filter_by(id=id, user_id=g.user_id).first()
   
   @staticmethod
-  def create(first_name, last_name, phone, email, street, city, state, zip):
-    new_address = Address(g.user_id, first_name, last_name, phone, email, street, city, state, zip) 
+  def create(first_name, last_name, phone, email, street, city, state, zip, favorite):
+    new_address = Address(g.user_id, first_name, last_name, phone, email, street, city, state, zip, favorite) 
     try:
       db.session.add(new_address)
       db.session.commit()
@@ -58,7 +58,7 @@ class Address(db.Model):
       logging.error(err)
       return False
   
-  def update(self, first_name, last_name, phone, email, street, city, state, zip):
+  def update(self, first_name, last_name, phone, email, street, city, state, zip, favorite):
     try:
       self.first_name = first_name
       self.last_name = last_name
@@ -68,6 +68,7 @@ class Address(db.Model):
       self.city = city
       self.state = state
       self.zip = zip
+      self.favorite = favorite
       db.session.commit()
       return self
     except Exception as err:
