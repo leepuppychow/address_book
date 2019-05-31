@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
+from worker import celery
 
 from middleware.auth import encode_auth_token, auth
 from services.usps import UspsService
@@ -24,6 +25,13 @@ migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 
 from models import Address, addresses_schema, address_schema, User
+
+# TODO: remove this sample route using background worker
+@app.route("/api/v1/add/<num1>/<num2>")
+def add(num1, num2):
+  task = celery.send_task('tasks.add', [num1, num2])
+  res = celery.AsyncResult(task.id)
+  return jsonify(res.state), 200
 
 @app.route("/api/v1/login", methods=["POST"])
 def login():
