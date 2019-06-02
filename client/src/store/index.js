@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import addresses from './addresses';
+import messages from './messages';
 import users from './users';
 import modals from './modals';
 
@@ -11,5 +12,6 @@ export default new Vuex.Store({
     users,
     addresses,
     modals,
+    messages,
   },
 });

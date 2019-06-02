@@ -162,5 +162,15 @@ def send_email():
   # TODO: handle background task failure
   return jsonify(res.state), 200
 
+@app.route("/api/v1/send-text", methods=["POST"])
+@auth.login_required
+def send_text():
+  number = request.json['number']
+  message = request.json['message']
+  task = celery.send_task("tasks.text_message", args=[number, message])
+  res = celery.AsyncResult(task.id)
+  # TODO: handle background task failure
+  return jsonify(res.state), 200
+
 if __name__ == '__main__':
   app.run(host="0.0.0.0", port=5000)

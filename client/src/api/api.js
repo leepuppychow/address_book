@@ -55,3 +55,5 @@ export const zipcodeLookup = body => Vue.http.post(`${baseUrl}/zipcode-lookup`, 
     Authorization: `Bearer ${sessionStorage.getItem('addressToken')}`,
   },
 });
+
+// TODO: Create new function to POST to ${baseUrl}/email
