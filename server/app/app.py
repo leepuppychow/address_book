@@ -26,13 +26,6 @@ bcrypt = Bcrypt(app)
 
 from models import Address, addresses_schema, address_schema, User
 
-# TODO: remove this sample route using background worker
-@app.route("/api/v1/add/<num1>/<num2>")
-def add(num1, num2):
-  task = celery.send_task('tasks.add', [num1, num2])
-  res = celery.AsyncResult(task.id)
-  return jsonify(res.state), 200
-
 @app.route("/api/v1/login", methods=["POST"])
 def login():
   email = request.json['email']
@@ -157,6 +150,17 @@ def lookup_zipcode():
     return jsonify(message="Unable to find address"), 404
   else: 
     return jsonify(zip5=zip5, zip4=zip4), 200
+
+@app.route("/api/v1/email", methods=["POST"])
+@auth.login_required
+def send_email():
+  email = request.json['email']
+  subject = request.json['subject']
+  message = request.json['message']
+  task = celery.send_task("tasks.email", args=[email, subject, message])
+  res = celery.AsyncResult(task.id)
+  # TODO: handle background task failure
+  return jsonify(res.state), 200
 
 if __name__ == '__main__':
   app.run(host="0.0.0.0", port=5000)
