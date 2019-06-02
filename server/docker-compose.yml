@@ -30,6 +30,8 @@ services:
       - ./celery-queue:/queue
   monitor:
     build: ./celery-queue
+    env_file:
+      - .env
     ports:
       - "5555:5555"
     entrypoint: flower
