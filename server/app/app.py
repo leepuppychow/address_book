@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
+from worker import celery
 
 from middleware.auth import encode_auth_token, auth
 from services.usps import UspsService
@@ -149,6 +150,17 @@ def lookup_zipcode():
     return jsonify(message="Unable to find address"), 404
   else: 
     return jsonify(zip5=zip5, zip4=zip4), 200
+
+@app.route("/api/v1/email", methods=["POST"])
+@auth.login_required
+def send_email():
+  email = request.json['email']
+  subject = request.json['subject']
+  message = request.json['message']
+  task = celery.send_task("tasks.email", args=[email, subject, message])
+  res = celery.AsyncResult(task.id)
+  # TODO: handle background task failure
+  return jsonify(res.state), 200
 
 if __name__ == '__main__':
   app.run(host="0.0.0.0", port=5000)

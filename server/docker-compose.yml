@@ -6,14 +6,34 @@ services:
     image: postgres
     ports:
       - "5433:5433"
+  redis:
+    image: redis
   server:
     restart: always
-    build: .
+    build: ./app
     env_file:
       - .env
     depends_on:
       - postgres
+      - redis
     ports:
       - "5000:5000"
     volumes:
       - ./app:/app
+  worker:
+    build: ./celery-queue
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    volumes:
+      - ./celery-queue:/queue
+  monitor:
+    build: ./celery-queue
+    ports:
+      - "5555:5555"
+    entrypoint: flower
+    command: -A tasks --port=5555 --broker=redis://redis:6379/0
+    depends_on:
+      - redis
+  
