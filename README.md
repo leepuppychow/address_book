@@ -12,16 +12,21 @@
 2. Create new `.env` file within `/server` directory and copy contents of `example.env` into there
     * Note: by leaving FLASK_DEBUG=1 the server will hot reload (because of the volumes setup in the docker-compose server service)
     * Turn off by setting FLASK_DEBUG=0
-3. In `.env`, set USPS_USER_ID equal to your USPS username. 
-4. In `.env`, set JWT_SECRET to whatever you would like.
-5. If you have PostgreSQL running locally make sure to stop that to free up port:
+3. In `.env`, set the following environment variables:
+    * USPS_USER_ID equal to your USPS username. 
+    * JWT_SECRET to whatever you would like.
+    * SENDGRID_API_KEY
+    * TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER
+4. If you have PostgreSQL running locally make sure to stop that to free up port:
     * Ex: `brew services stop postgres`
     * Ex: `pg_ctl -D /usr/local/var/postgres stop`
-6. If you happen to have existing Docker containers named `server_server_1` and/or `server_postgres_1` remove those first:
+5. If you happen to have existing Docker containers named `server_server_1` and/or `server_postgres_1` remove those first:
     * From `/server` directory run: `docker-compose down`
-7. Be in directory `/server`, and then run `docker-compose build`
-8. Be in directory `/server`, and then run `docker-compose up`
-9. Check status of server with GET to `http://localhost:5000/api/v1/ping` --> status 200
+6. Be in directory `/server`, and then run `docker-compose build`
+7. Be in directory `/server`, and then run `docker-compose up`
+    * NOTE: For more workers (for sending emails or text messages) run: `docker-compose up --scale worker=5`
+8. Check status of server with GET to `http://localhost:5000/api/v1/ping` --> status 200
+9. You can monitor the status of the Celery workers via the Flower monitoring service at `http://localhost:5555`
 
 ### Notes
 
@@ -47,6 +52,8 @@
 * PUT /api/v1/addresses/:id
 * DELETE /api/v1/addresses/:id
 * POST /api/v1/zipcode-lookup
+* POST /api/v1/email
+* POST /api/v1/send-text
 
 ## Client (Vue.js)
 

@@ -6,6 +6,7 @@ from twilio.rest import Client
 
 CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL'),
 CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID')
 TWILIO_AUTH_TOKEN = os.environ.get('TWILIO_AUTH_TOKEN')
 TWILIO_PHONE_NUMBER = os.environ.get('TWILIO_PHONE_NUMBER')
@@ -22,7 +23,7 @@ def send_email(email, subject, message):
     html_content=f'<p>{message}</p>'
   )
   try:
-    sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+    sg = SendGridAPIClient(SENDGRID_API_KEY)
     response = sg.send(message)
     return response.status_code
   except Exception as e:
