@@ -26,6 +26,10 @@ bcrypt = Bcrypt(app)
 
 from models import Address, addresses_schema, address_schema, User
 
+@app.route("/api/v1/ping", methods=["GET"])
+def health_check():
+  return jsonify(message="OK"), 200
+
 @app.route("/api/v1/login", methods=["POST"])
 def login():
   email = request.json['email']
@@ -66,10 +70,6 @@ def register():
 @auth.login_required
 def validate():
   return jsonify(message="valid token"), 200
-
-@app.route("/api/v1/ping", methods=["GET"])
-def health_check():
-  return jsonify(message="OK"), 200
 
 @app.route("/api/v1/addresses", methods=["GET"])
 @auth.login_required
