@@ -59,7 +59,7 @@
 
 * NOTE: if there is an issue running the client-side code locally, you can view the most recent app with the link below. You still need the server running locally (I did not want to deploy the server and database at this time):
 
-    [On Amazon S3](http://lee-address-book.s3-website-us-west-2.amazonaws.com/#/)
+    [Deployed via Netlify](https://stoic-wing-d9a1c2.netlify.com/#/)
 
 * Use: _Node.js version: 8.9.4_
 * From the `/client` directory:
