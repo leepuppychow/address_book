@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h1>Please Login or Register</h1>
+    <h1>LOGIN OR REGISTER NOW!</h1>
     <input
       id="login-email"
       type="text"
